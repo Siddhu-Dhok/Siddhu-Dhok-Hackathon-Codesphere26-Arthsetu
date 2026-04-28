@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="min_screen_height">640dp</dimen>
+
+    <!-- Bottom navigation — compact bar -->
+    <dimen name="bottom_nav_icon_size">20dp</dimen>
+    <dimen name="bottom_nav_label_text">10.5sp</dimen>
+    <dimen name="bottom_nav_vertical_padding">2dp</dimen>
+    <dimen name="bottom_nav_item_pad_v">1dp</dimen>
+
+    <!-- Navigation drawer -->
+    <dimen name="nav_drawer_item_height">44dp</dimen>
+    <dimen name="nav_drawer_icon_width">22dp</dimen>
+    <dimen name="nav_drawer_emoji_text">16sp</dimen>
+    <dimen name="nav_drawer_title_text">13sp</dimen>
+    <dimen name="nav_drawer_subtitle_text">10sp</dimen>
+    <dimen name="nav_drawer_chevron_text">17sp</dimen>
+</resources>

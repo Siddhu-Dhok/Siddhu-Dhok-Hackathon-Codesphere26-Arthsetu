@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- ╔══════════════════════════════════════╗ -->
+    <!-- ║       Custom Toolbar                  ║ -->
+    <!-- ╚══════════════════════════════════════╝ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/surface"
+        android:elevation="2dp">
+
+        <TextView android:id="@+id/btnHamburger"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="☰" android:textSize="20sp" android:textColor="@color/text_primary"
+            android:paddingEnd="12dp" android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true" android:focusable="true"/>
+
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Wealth Portfolio"
+            android:textSize="19sp" android:textStyle="bold"
+            android:textColor="@color/text_primary" android:fontFamily="sans-serif-medium"/>
+
+        <TextView android:id="@+id/btnSearch"
+            android:layout_width="38dp" android:layout_height="38dp"
+            android:gravity="center" android:text="🔍" android:textSize="18sp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true" android:focusable="true"/>
+
+        <TextView android:id="@+id/btnNotify"
+            android:layout_width="38dp" android:layout_height="38dp"
+            android:gravity="center" android:text="🔔" android:textSize="18sp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true" android:focusable="true"/>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ╔══════════════════════════════════════╗ -->
+            <!-- ║       Net Worth Gradient Card         ║ -->
+            <!-- ╚══════════════════════════════════════╝ -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/transparent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_gradient_primary"
+                    android:padding="20dp">
+
+                    <!-- Label + YOY badge -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="AGGREGATE NET WORTH"
+                            android:textSize="11sp" android:textColor="#CCFFFFFF" android:letterSpacing="0.10"/>
+                        <TextView android:id="@+id/tvYoyBadge"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="+0.0% YOY" android:textSize="11sp" android:textStyle="bold"
+                            android:textColor="#FFFFFF" android:background="@drawable/bg_month_chip"
+                            android:paddingHorizontal="10dp" android:paddingVertical="3dp"/>
+                    </LinearLayout>
+
+                    <!-- Net worth amount -->
+                    <TextView android:id="@+id/tvNetWorth"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="₹0" android:textSize="34sp" android:textStyle="bold"
+                        android:textColor="#FFFFFF" android:layout_marginBottom="18dp"/>
+
+                    <!-- Action buttons -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAddAsset"
+                            android:layout_width="0dp" android:layout_height="44dp"
+                            android:layout_weight="1" android:text="↑ Add Asset"
+                            android:textColor="#FFFFFF" android:layout_marginEnd="8dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            app:strokeColor="#66FFFFFF" app:cornerRadius="12dp"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAddLiability"
+                            android:layout_width="0dp" android:layout_height="44dp"
+                            android:layout_weight="1" android:text="+ Liability"
+                            android:textColor="#FFFFFF" android:layout_marginStart="8dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            app:strokeColor="#66FFFFFF" app:cornerRadius="12dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ╔══════════════════════════════════════╗ -->
+            <!-- ║       Quick Stats Row (3 cards)       ║ -->
+            <!-- ╚══════════════════════════════════════╝ -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:paddingHorizontal="16dp"
+                android:layout_marginBottom="14dp">
+
+                <!-- Bank Balance -->
+                <androidx.cardview.widget.CardView android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_marginEnd="6dp" app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp" app:cardBackgroundColor="@color/surface">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="🏦" android:textSize="18sp" android:layout_marginBottom="4dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="BANK BALANCE" android:textSize="9sp"
+                            android:textColor="@color/text_secondary" android:letterSpacing="0.06"/>
+                        <TextView android:id="@+id/tvBankBalance"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="₹0" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/text_primary" android:layout_marginTop="2dp"/>
+                        <TextView android:id="@+id/tvBankChange"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="+0.0%" android:textSize="11sp"
+                            android:textColor="@color/success" android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Invested -->
+                <androidx.cardview.widget.CardView android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_marginHorizontal="3dp" app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp" app:cardBackgroundColor="@color/surface">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="📈" android:textSize="18sp" android:layout_marginBottom="4dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="INVESTED" android:textSize="9sp"
+                            android:textColor="@color/text_secondary" android:letterSpacing="0.06"/>
+                        <TextView android:id="@+id/tvInvested"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="₹0" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/text_primary" android:layout_marginTop="2dp"/>
+                        <TextView android:id="@+id/tvInvestedChange"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="+0.0%" android:textSize="11sp"
+                            android:textColor="@color/success" android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Borrowing -->
+                <androidx.cardview.widget.CardView android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_marginStart="6dp" app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp" app:cardBackgroundColor="@color/surface">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="💳" android:textSize="18sp" android:layout_marginBottom="4dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="BORROWING" android:textSize="9sp"
+                            android:textColor="@color/text_secondary" android:letterSpacing="0.06"/>
+                        <TextView android:id="@+id/tvBorrowing"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="₹0" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/text_primary" android:layout_marginTop="2dp"/>
+                        <TextView android:id="@+id/tvBorrowingChange"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="-0.0%" android:textSize="11sp"
+                            android:textColor="@color/error" android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- ╔══════════════════════════════════════╗ -->
+            <!-- ║       Asset Allocation Card           ║ -->
+            <!-- ╚══════════════════════════════════════╝ -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="16dp">
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="🥧" android:textSize="16sp" android:layout_marginEnd="8dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Asset Allocation" android:textSize="15sp"
+                            android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="160dp"
+                        android:orientation="horizontal" android:gravity="center_vertical">
+
+                        <!-- Donut Chart -->
+                        <com.example.team_arthsetu.ui.DonutChartView
+                            android:id="@+id/donutChart"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+                        <!-- Legend -->
+                        <LinearLayout android:id="@+id/layoutLegend"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="vertical" android:layout_marginStart="16dp"/>
+
+                    </LinearLayout>
+
+                    <TextView android:id="@+id/tvAllocationEmpty"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="Add assets to see allocation"
+                        android:gravity="center" android:textSize="13sp"
+                        android:textColor="@color/text_secondary" android:paddingVertical="20dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ╔══════════════════════════════════════╗ -->
+            <!-- ║       Active Assets Section           ║ -->
+            <!-- ╚══════════════════════════════════════╝ -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Header -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp" android:paddingTop="14dp" android:paddingBottom="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="ACTIVE ASSETS"
+                            android:textSize="12sp" android:textStyle="bold"
+                            android:textColor="@color/text_primary" android:letterSpacing="0.08"/>
+                        <TextView android:id="@+id/tvViewAllAssets"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="View All ›" android:textSize="12sp"
+                            android:textColor="@color/primary" android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/border" android:layout_marginHorizontal="16dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAssets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"/>
+
+                    <TextView android:id="@+id/tvAssetsEmpty"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="No assets yet. Tap '↑ Add Asset' to begin."
+                        android:gravity="center" android:textSize="13sp"
+                        android:textColor="@color/text_secondary" android:padding="20dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ╔══════════════════════════════════════╗ -->
+            <!-- ║       Liabilities Section             ║ -->
+            <!-- ╚══════════════════════════════════════╝ -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp" android:paddingTop="14dp" android:paddingBottom="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="LIABILITIES"
+                            android:textSize="12sp" android:textStyle="bold"
+                            android:textColor="@color/error" android:letterSpacing="0.08"/>
+                        <TextView android:id="@+id/tvViewAllLiabilities"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="View All ›" android:textSize="12sp"
+                            android:textColor="@color/primary" android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/border" android:layout_marginHorizontal="16dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvLiabilities"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"/>
+
+                    <TextView android:id="@+id/tvLiabilitiesEmpty"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="No liabilities. Debt-free! 🎉"
+                        android:gravity="center" android:textSize="13sp"
+                        android:textColor="@color/success" android:padding="20dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ╔══════════════════════════════════════╗ -->
+            <!-- ║    View Detailed Statements button    ║ -->
+            <!-- ╚══════════════════════════════════════╝ -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStatements"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="📋  View Detailed Statements ›"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                app:strokeColor="@color/primary"
+                android:textColor="@color/primary"
+                app:cornerRadius="12dp"/>
+
+            <!-- Loading indicator -->
+            <ProgressBar android:id="@+id/progressBar"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" android:layout_margin="16dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

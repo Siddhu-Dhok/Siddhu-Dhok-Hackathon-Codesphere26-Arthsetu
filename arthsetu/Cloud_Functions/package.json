@@ -1,0 +1,20 @@
+{
+  "name": "arthsetu-cloud-functions",
+  "description": "Firestore-triggered FCM for expense limit alerts",
+  "engines": {
+    "node": "20"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^5.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "private": true
+}

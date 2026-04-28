@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="96dp"
+    android:layout_height="72dp"
+    android:layout_marginEnd="8dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_sim_chip_inactive"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingHorizontal="4dp">
+
+    <TextView
+        android:id="@+id/tvCustomChipEmoji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="✨"
+        android:textSize="22sp"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvCustomChipTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="9.5sp"
+        android:textStyle="bold"
+        android:textColor="#4B5563"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+</LinearLayout>

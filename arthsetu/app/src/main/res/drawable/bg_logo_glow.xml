@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer glow ring -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#334C35DC"/>
+            <size android:width="108dp" android:height="108dp"/>
+        </shape>
+    </item>
+    <!-- Inner fill -->
+    <item
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp">
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="#7C4DFF"
+                android:endColor="#4C35DC"
+                android:angle="135"/>
+            <size android:width="92dp" android:height="92dp"/>
+        </shape>
+    </item>
+</layer-list>

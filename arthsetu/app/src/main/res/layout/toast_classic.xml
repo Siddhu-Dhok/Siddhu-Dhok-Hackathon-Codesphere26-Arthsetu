@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Classic light toast: compact rounded card, launcher icon + message.
+  Shown via [AppSnackbar] (Toast under the hood).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_toast_classic"
+    android:elevation="10dp"
+    android:paddingStart="14dp"
+    android:paddingEnd="18dp"
+    android:paddingTop="11dp"
+    android:paddingBottom="11dp"
+    android:minHeight="48dp">
+
+    <ImageView
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="11dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/toast_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="280dp"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:lineSpacingExtra="2dp"
+        android:fontFamily="sans-serif"
+        android:maxLines="8"
+        android:ellipsize="end"
+        tools:text="Message saved successfully" />
+
+</LinearLayout>

@@ -1,0 +1,1190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F0F2F8">
+
+    <!-- ══════════════════════════════════════════════════════════════
+         TOOLBAR — gradient, consistent with drawer header
+         ══════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/simToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/surface"
+        android:elevation="2dp">
+
+        <!-- Hamburger -->
+        <TextView
+            android:id="@+id/btnSimHamburger"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="☰"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <!-- Title + subtitle -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Risk Simulator"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI-powered what-if analysis"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary"/>
+
+        </LinearLayout>
+
+        <!-- Saved simulations badge -->
+        <TextView
+            android:id="@+id/tvSimCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 saved"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_sim_toolbar_badge"/>
+
+    </LinearLayout>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         SCROLLABLE CONTENT
+         ══════════════════════════════════════════════════════════════ -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="28dp">
+
+            <!-- ── Section label ──────────────────────────────────── -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SELECT SCENARIO"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.14"
+                android:textColor="#9CA3AF"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- ── Scenario chips (card-style, horizontally scrollable) ── -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="18dp">
+
+                <LinearLayout
+                    android:id="@+id/llScenarioChips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Job Loss chip -->
+                    <LinearLayout
+                        android:id="@+id/chipJobLoss"
+                        android:layout_width="80dp"
+                        android:layout_height="72dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_sim_chip_active"
+                        android:layout_marginEnd="8dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💼"
+                            android:textSize="22sp"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Job Loss"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- Medical chip -->
+                    <LinearLayout
+                        android:id="@+id/chipMedical"
+                        android:layout_width="80dp"
+                        android:layout_height="72dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_sim_chip_inactive"
+                        android:layout_marginEnd="8dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🏥"
+                            android:textSize="22sp"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Medical"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold"
+                            android:textColor="#4B5563"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- Income Drop chip -->
+                    <LinearLayout
+                        android:id="@+id/chipIncomeDrop"
+                        android:layout_width="80dp"
+                        android:layout_height="72dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_sim_chip_inactive"
+                        android:layout_marginEnd="8dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📉"
+                            android:textSize="22sp"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Income Drop"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold"
+                            android:textColor="#4B5563"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- Investment Crash chip -->
+                    <LinearLayout
+                        android:id="@+id/chipInvestment"
+                        android:layout_width="80dp"
+                        android:layout_height="72dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_sim_chip_inactive"
+                        android:layout_marginEnd="8dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📊"
+                            android:textSize="22sp"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Inv. Crash"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold"
+                            android:textColor="#4B5563"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- EMI Hike chip -->
+                    <LinearLayout
+                        android:id="@+id/chipEmiHike"
+                        android:layout_width="80dp"
+                        android:layout_height="72dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_sim_chip_inactive"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🏦"
+                            android:textSize="22sp"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="EMI Hike"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold"
+                            android:textColor="#4B5563"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ── Input Card ──────────────────────────────────────── -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Scenario header row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="18dp"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="14dp">
+
+                        <TextView
+                            android:id="@+id/tvScenarioIcon"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:gravity="center"
+                            android:text="💼"
+                            android:textSize="22sp"
+                            android:background="@drawable/bg_insight_icon"
+                            android:layout_marginEnd="12dp"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvInputTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Job Loss Scenario"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"/>
+
+                            <TextView
+                                android:id="@+id/tvInputDesc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="How long can you survive without your primary income?"
+                                android:textSize="11.5sp"
+                                android:textColor="@color/text_secondary"
+                                android:lineSpacingMultiplier="1.3"
+                                android:layout_marginTop="2dp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#F3F4F6"
+                        android:layout_marginHorizontal="18dp"/>
+
+                    <!-- Input fields container -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="18dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="18dp">
+
+                        <!-- ═══ JOB LOSS ═══════════════════════════════════ -->
+                        <LinearLayout
+                            android:id="@+id/groupJobLoss"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Current Savings (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etJLSavings"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Monthly Expenses (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etJLExpenses"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Total EMI / Loan Payments (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etJLEmi"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Fallback Income (freelance / spouse) — optional"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etJLFallback"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <!-- ═══ MEDICAL ════════════════════════════════════ -->
+                        <LinearLayout
+                            android:id="@+id/groupMedical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Current Savings (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etMedSavings"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Insurance Coverage (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etMedInsurance"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Emergency / Hospital Cost (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etMedCost"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Monthly Income (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginEnd="8dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etMedIncome"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Monthly Expenses (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etMedExpenses"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- ═══ INVESTMENT CRASH ══════════════════════════ -->
+                        <LinearLayout
+                            android:id="@+id/groupInvestment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Portfolio Value (₹)  — auto-filled from Wealth"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etInvPortfolio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="4dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Market crash severity"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/text_secondary"/>
+                                <TextView
+                                    android:id="@+id/tvInvCrashLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="30% drop"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#EF4444"/>
+                            </LinearLayout>
+                            <SeekBar
+                                android:id="@+id/seekInvCrash"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:max="80"
+                                android:progress="30"
+                                android:layout_marginBottom="14dp"
+                                android:progressTint="#EF4444"
+                                android:thumbTint="#EF4444"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Monthly SIP (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginEnd="8dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etInvSip"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Expected return % p.a."
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etInvReturn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="number"
+                                        android:text="12"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- ═══ EMI RATE HIKE ════════════════════════════ -->
+                        <LinearLayout
+                            android:id="@+id/groupEmiHike"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Current EMI (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginEnd="8dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etEmiCurrent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Loan Outstanding (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etEmiOutstanding"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="4dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Interest rate hike"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/text_secondary"/>
+                                <TextView
+                                    android:id="@+id/tvEmiHikeLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="+2.0%"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#D97706"/>
+                            </LinearLayout>
+                            <SeekBar
+                                android:id="@+id/seekEmiHike"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:max="60"
+                                android:progress="20"
+                                android:layout_marginBottom="14dp"
+                                android:progressTint="#D97706"
+                                android:thumbTint="#D97706"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Monthly Income (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginEnd="8dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etEmiIncome"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Monthly Expenses (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etEmiExpenses"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Current Savings / Buffer (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etEmiSavings"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <!-- ═══ INCOME DROP ════════════════════════════════ -->
+                        <LinearLayout
+                            android:id="@+id/groupIncomeDrop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Current Monthly Income (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etIDIncome"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="4dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Income retained after drop"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/text_secondary"/>
+                                <TextView
+                                    android:id="@+id/tvIDDropLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="60%"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/primary"/>
+                            </LinearLayout>
+                            <SeekBar
+                                android:id="@+id/seekIDDrop"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:max="90"
+                                android:progress="60"
+                                android:layout_marginBottom="14dp"
+                                android:progressTint="@color/primary"
+                                android:thumbTint="@color/primary"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Monthly Expenses (₹)"
+                                app:prefixText="₹ "
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_marginBottom="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etIDExpenses"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="EMI / Loans (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_marginEnd="8dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etIDEmi"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Current Savings (₹)"
+                                    app:prefixText="₹ "
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etIDSavings"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ── Run Simulation button ──────────────────────────── -->
+            <Button
+                android:id="@+id/btnRunSim"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="▶  Run Simulation"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/bg_sim_run_btn"
+                android:stateListAnimator="@null"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- ── Results section ────────────────────────────────── -->
+            <LinearLayout
+                android:id="@+id/layoutResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- RESULT SUMMARY CARD -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardResultSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/surface">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Colored result header -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/bg_result_header_red"
+                            android:paddingHorizontal="18dp"
+                            android:paddingVertical="16dp">
+
+                            <TextView
+                                android:id="@+id/tvResultIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⏳"
+                                android:textSize="28sp"
+                                android:layout_marginEnd="14dp"/>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvResultTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Survival Duration"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    android:layout_marginBottom="2dp"/>
+
+                                <TextView
+                                    android:id="@+id/tvResultSub"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Calculating…"
+                                    android:textSize="12sp"
+                                    android:textColor="#CCFFFFFF"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- 3 stat boxes -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="14dp"
+                            android:paddingVertical="14dp">
+
+                            <!-- Months Runway -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_stat_box_purple"
+                                android:padding="12dp"
+                                android:layout_marginEnd="8dp">
+
+                                <TextView
+                                    android:id="@+id/tvStatMonths"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="—"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/primary"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Months Runway"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+
+                            <!-- Depletion Date -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_stat_box_blue"
+                                android:padding="12dp"
+                                android:layout_marginEnd="8dp">
+
+                                <TextView
+                                    android:id="@+id/tvStatDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="—"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#1D4ED8"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Depletion Date"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+
+                            <!-- Final Balance -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_stat_box_green"
+                                android:padding="12dp">
+
+                                <TextView
+                                    android:id="@+id/tvStatBalance"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="—"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#16A34A"/>
+
+                                <TextView
+                                    android:id="@+id/tvStatBalanceLabel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Final Balance"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginTop="2dp"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- BALANCE TREND CHART CARD -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/surface">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Chart header row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="14dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="📈  Balance Trend"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"/>
+
+                            <!-- Legend -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="3dp"
+                                    android:background="#22C55E"
+                                    android:layout_marginEnd="4dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Safe"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginEnd="10dp"/>
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="3dp"
+                                    android:background="#EF4444"
+                                    android:layout_marginEnd="4dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="At risk"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/text_secondary"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <com.example.team_arthsetu.ui.SimChartView
+                            android:id="@+id/simChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"/>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- AI INSIGHTS CARD -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/surface">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <!-- Insights header row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="14dp">
+
+                            <TextView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:gravity="center"
+                                android:text="💡"
+                                android:textSize="18sp"
+                                android:background="@drawable/bg_insight_icon"
+                                android:layout_marginEnd="10dp"/>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="AI Insights"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Personalised recommendations"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_secondary"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Divider -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#F3F4F6"
+                            android:layout_marginBottom="14dp"/>
+
+                        <!-- Insights injected here at runtime -->
+                        <LinearLayout
+                            android:id="@+id/llInsights"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"/>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- SAVE TO CLOUD BUTTON -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSaveSim"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="☁  Save Simulation to Cloud"
+                    android:textSize="14sp"
+                    app:backgroundTint="#F3F0FF"
+                    app:cornerRadius="16dp"
+                    android:textColor="@color/primary"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="1.5dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddSimCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:contentDescription="Add simulation category"
+        app:backgroundTint="@color/primary"
+        app:tint="@color/white"
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:elevation="6dp"/>
+
+</FrameLayout>

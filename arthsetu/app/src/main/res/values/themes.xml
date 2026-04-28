@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ArthSetuAI" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar matches the toolbar surface — no overlap -->
+        <item name="android:statusBarColor">@color/surface</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <!-- Toolbar title style -->
+    <!-- Bottom nav: compact labels; icons use full-color drawables (tint cleared in MainActivity). -->
+    <style name="TextAppearance.Arth.BottomNavLabel" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">@dimen/bottom_nav_label_text</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="Widget.Arth.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/TextAppearance.Arth.BottomNavLabel</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.Arth.BottomNavLabel</item>
+    </style>
+
+    <style name="ToolbarTitleStyle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="OtpBox">
+        <item name="android:layout_width">46dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:background">@drawable/bg_otp_box_selector</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+</resources>

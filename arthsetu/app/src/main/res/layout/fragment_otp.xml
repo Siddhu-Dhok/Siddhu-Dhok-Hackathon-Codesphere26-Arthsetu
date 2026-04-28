@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/text_primary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:minHeight="@dimen/min_screen_height">
+
+        <!-- ── Top section: icon + title ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="56dp"
+            android:paddingBottom="24dp">
+
+            <FrameLayout
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/bg_logo_circle">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🔐"
+                    android:textSize="34sp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OTP Verification"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/tvPhoneInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OTP sent to +91 XXXXXXXXXX"
+                android:textSize="14sp"
+                android:textColor="@color/white_70"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChangeNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Change Number"
+                android:textSize="12sp"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:textColor="@color/white_70"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+        <!-- ── OTP Card ── -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="16dp"
+            app:cardBackgroundColor="@color/surface">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="28dp"
+                android:paddingBottom="36dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter 6-Digit OTP"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check your SMS inbox for the code"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="28dp"/>
+
+                <!-- ── 6 OTP boxes ── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp">
+
+                    <EditText android:id="@+id/otp1"
+                        style="@style/OtpBox"/>
+                    <View android:layout_width="8dp" android:layout_height="1dp"/>
+                    <EditText android:id="@+id/otp2"
+                        style="@style/OtpBox"/>
+                    <View android:layout_width="8dp" android:layout_height="1dp"/>
+                    <EditText android:id="@+id/otp3"
+                        style="@style/OtpBox"/>
+                    <View android:layout_width="12dp" android:layout_height="1dp"/>
+                    <EditText android:id="@+id/otp4"
+                        style="@style/OtpBox"/>
+                    <View android:layout_width="8dp" android:layout_height="1dp"/>
+                    <EditText android:id="@+id/otp5"
+                        style="@style/OtpBox"/>
+                    <View android:layout_width="8dp" android:layout_height="1dp"/>
+                    <EditText android:id="@+id/otp6"
+                        style="@style/OtpBox"/>
+
+                </LinearLayout>
+
+                <!-- Timer -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:id="@+id/tvTimer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Resend OTP in 60s"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_secondary"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnResend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Resend"
+                        android:textSize="13sp"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:textColor="@color/primary"
+                        android:enabled="false"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVerify"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="Verify OTP"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/primary"
+                    app:cornerRadius="14dp"/>
+
+                <LinearLayout
+                    android:id="@+id/layoutLoading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginEnd="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Verifying..."
+                        android:textSize="13sp"
+                        android:textColor="@color/text_secondary"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

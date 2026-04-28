@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- ╔══════════════════════════════════════════════╗ -->
+    <!-- ║              Main content                     ║ -->
+    <!-- ╚══════════════════════════════════════════════╝ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background">
+
+        <!-- Global ActionBar (hidden for auth / expense / wealth screens) -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            app:elevation="4dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/surface"
+                app:titleTextAppearance="@style/ToolbarTitleStyle"
+                app:titleTextColor="@color/text_primary"
+                app:navigationIconTint="@color/text_primary"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            style="@style/Widget.Arth.BottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_nav"
+            android:paddingTop="@dimen/bottom_nav_vertical_padding"
+            android:paddingBottom="@dimen/bottom_nav_vertical_padding"
+            android:minHeight="48dp"
+            app:menu="@menu/bottom_nav_menu"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@color/bottom_nav_text"
+            app:itemIconSize="@dimen/bottom_nav_icon_size"
+            app:itemPaddingTop="@dimen/bottom_nav_item_pad_v"
+            app:itemPaddingBottom="@dimen/bottom_nav_item_pad_v"
+            app:itemIconTint="@null"
+            app:itemRippleColor="@color/primary_light"
+            app:elevation="8dp"/>
+
+    </LinearLayout>
+
+    <!-- ╔══════════════════════════════════════════════╗ -->
+    <!-- ║              Navigation Drawer               ║ -->
+    <!-- ╚══════════════════════════════════════════════╝ -->
+    <!--
+      fitsSystemWindows="true" lets the drawer extend behind the
+      translucent status bar. The header's paddingTop is set
+      programmatically via WindowInsetsCompat in MainActivity so
+      the content always clears the status bar precisely.
+    -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="276dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/bg_nav_drawer_panel">
+
+        <include layout="@layout/nav_drawer_content"/>
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

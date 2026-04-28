@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- ╔══════════════════════════════════════╗ -->
+    <!-- ║      Gradient summary header          ║ -->
+    <!-- ╚══════════════════════════════════════╝ -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@android:color/transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_gradient_primary"
+            android:padding="20dp">
+
+            <!-- Month + year -->
+            <TextView
+                android:id="@+id/tvDetailMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="March 2026"
+                android:textSize="13sp"
+                android:textColor="#CCFFFFFF"
+                android:letterSpacing="0.04"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- Total spend -->
+            <TextView
+                android:id="@+id/tvDetailTotalSpend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹0"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Expenses"
+                android:textSize="12sp"
+                android:textColor="#AAFFFFFF"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- 3 stat pills -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Categories count -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_month_chip"
+                    android:padding="10dp"
+                    android:layout_marginEnd="6dp"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tvDetailCategoryCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Categories"
+                        android:textSize="10sp"
+                        android:textColor="#CCFFFFFF"/>
+                </LinearLayout>
+
+                <!-- Transaction count -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_month_chip"
+                    android:padding="10dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tvDetailTxnCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transactions"
+                        android:textSize="10sp"
+                        android:textColor="#CCFFFFFF"/>
+                </LinearLayout>
+
+                <!-- Avg per txn -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_month_chip"
+                    android:padding="10dp"
+                    android:layout_marginStart="6dp"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tvDetailAvg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹0"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Avg/txn"
+                        android:textSize="10sp"
+                        android:textColor="#CCFFFFFF"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ╔══════════════════════════════════════╗ -->
+    <!-- ║     Section label                     ║ -->
+    <!-- ╚══════════════════════════════════════╝ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ALL CATEGORIES"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:letterSpacing="0.10"/>
+
+        <TextView
+            android:id="@+id/tvSortLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sorted by spend ↓"
+            android:textSize="11sp"
+            android:textColor="@color/text_secondary"/>
+
+    </LinearLayout>
+
+    <!-- ╔══════════════════════════════════════╗ -->
+    <!-- ║       Loading / empty states          ║ -->
+    <!-- ╚══════════════════════════════════════╝ -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="24dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📊"
+            android:textSize="48sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No expense data"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add transactions or switch the month"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <!-- ╔══════════════════════════════════════╗ -->
+    <!-- ║    Category list (scrollable)         ║ -->
+    <!-- ╚══════════════════════════════════════╝ -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp"
+        android:overScrollMode="never"/>
+
+</LinearLayout>

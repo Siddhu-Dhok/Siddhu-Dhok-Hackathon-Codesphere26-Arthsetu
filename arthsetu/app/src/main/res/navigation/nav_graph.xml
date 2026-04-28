@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- Screen 1: Enter mobile number -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.team_arthsetu.ui.LoginFragment"
+        android:label="Login">
+        <action
+            android:id="@+id/action_login_to_otp"
+            app:destination="@id/otpFragment"/>
+        <action
+            android:id="@+id/action_login_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <!-- Screen 2: Verify OTP -->
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.example.team_arthsetu.ui.OtpFragment"
+        android:label="Verify OTP">
+        <action
+            android:id="@+id/action_otp_to_dashboard"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <!-- Main screens (Bottom Navigation) -->
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.team_arthsetu.ui.DashboardFragment"
+        android:label="Dashboard"/>
+
+    <fragment
+        android:id="@+id/expenseFragment"
+        android:name="com.example.team_arthsetu.ui.ExpenseFragment"
+        android:label="Expenses">
+        <action
+            android:id="@+id/action_expense_to_categoryDetail"
+            app:destination="@id/categoryDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryDetailFragment"
+        android:name="com.example.team_arthsetu.ui.CategoryDetailFragment"
+        android:label="Category Breakdown"/>
+
+    <fragment
+        android:id="@+id/wealthFragment"
+        android:name="com.example.team_arthsetu.ui.WealthFragment"
+        android:label="Wealth"/>
+
+    <fragment
+        android:id="@+id/goalsFragment"
+        android:name="com.example.team_arthsetu.ui.GoalsFragment"
+        android:label="Goals Planner"/>
+
+    <fragment
+        android:id="@+id/simulationFragment"
+        android:name="com.example.team_arthsetu.ui.SimulationFragment"
+        android:label="Risk Simulator"/>
+
+    <fragment
+        android:id="@+id/savedSimulationsFragment"
+        android:name="com.example.team_arthsetu.ui.SavedSimulationsFragment"
+        android:label="Saved simulations">
+        <action
+            android:id="@+id/action_savedSimulations_to_savedSimulationDetail"
+            app:destination="@id/savedSimulationDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/savedSimulationDetailFragment"
+        android:name="com.example.team_arthsetu.ui.SavedSimulationDetailFragment"
+        android:label="Simulation details">
+        <argument
+            android:name="scenarioType"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+
+</navigation>

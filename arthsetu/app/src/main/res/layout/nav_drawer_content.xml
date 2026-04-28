@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Fully-custom drawer layout.
+  The header section (id=navHeaderSection) has its paddingTop set
+  programmatically in MainActivity via WindowInsetsCompat so it
+  always clears the status bar on every device.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- ══════════════════════════════════════════════════════════
+         HEADER – gradient, paddingTop injected by MainActivity
+         ══════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/navHeaderSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_gradient_drawer"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="14dp">
+
+        <!-- Name + phone, then photo below (classic / modern profile block) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvNavName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Complete Your Profile"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:letterSpacing="0.01"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/tvNavPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text=""
+                android:textSize="12sp"
+                android:textColor="#CCFFFFFF"/>
+
+            <!-- Avatar below identity -->
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:elevation="3dp">
+
+                <TextView
+                    android:id="@+id/tvNavInitials"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="?"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/bg_nav_avatar"/>
+
+                <ImageView
+                    android:id="@+id/ivNavPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/bg_nav_avatar"
+                    android:clipToOutline="true"
+                    android:visibility="gone"
+                    android:contentDescription="Profile photo"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ══════════════════════════════════════════════════════════
+         MENU SECTION – fills remaining space
+         ══════════════════════════════════════════════════════════ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="6dp">
+
+            <!-- Bank statement import -->
+            <LinearLayout
+                android:id="@+id/navItemBankStatement"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_drawer_item_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/bg_nav_menu_hover"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="@dimen/nav_drawer_icon_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="📑"
+                    android:textSize="@dimen/nav_drawer_emoji_text"
+                    android:layout_marginEnd="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expenses via Bank Statement"
+                        android:textSize="@dimen/nav_drawer_title_text"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A2E"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PDF bank statement"
+                        android:textSize="@dimen/nav_drawer_subtitle_text"
+                        android:textColor="#9CA3AF"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="@dimen/nav_drawer_chevron_text"
+                    android:textColor="#D1D5DB"/>
+
+            </LinearLayout>
+
+            <!-- Cloud statement transactions -->
+            <LinearLayout
+                android:id="@+id/navItemStatementCloud"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_drawer_item_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/bg_nav_menu_hover"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="@dimen/nav_drawer_icon_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="☁"
+                    android:textSize="@dimen/nav_drawer_emoji_text"
+                    android:layout_marginEnd="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Statement transactions (Cloud)"
+                        android:textSize="@dimen/nav_drawer_title_text"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A2E"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View what you saved to Firestore"
+                        android:textSize="@dimen/nav_drawer_subtitle_text"
+                        android:textColor="#9CA3AF"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="@dimen/nav_drawer_chevron_text"
+                    android:textColor="#D1D5DB"/>
+
+            </LinearLayout>
+
+            <!-- My Goals (Firestore) -->
+            <LinearLayout
+                android:id="@+id/navItemMyGoals"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_drawer_item_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/bg_nav_menu_hover"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="@dimen/nav_drawer_icon_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="🎯"
+                    android:textSize="@dimen/nav_drawer_emoji_text"
+                    android:layout_marginEnd="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="My Goals"
+                        android:textSize="@dimen/nav_drawer_title_text"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A2E"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saved from Goals Planner"
+                        android:textSize="@dimen/nav_drawer_subtitle_text"
+                        android:textColor="#9CA3AF"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="@dimen/nav_drawer_chevron_text"
+                    android:textColor="#D1D5DB"/>
+
+            </LinearLayout>
+
+            <!-- Saved simulation scenarios (Firestore) -->
+            <LinearLayout
+                android:id="@+id/navItemSavedSimulations"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_drawer_item_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/bg_nav_menu_hover"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="@dimen/nav_drawer_icon_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="☁"
+                    android:textSize="@dimen/nav_drawer_emoji_text"
+                    android:layout_marginEnd="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Simulation library"
+                        android:textSize="@dimen/nav_drawer_title_text"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A2E"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saved runs by category"
+                        android:textSize="@dimen/nav_drawer_subtitle_text"
+                        android:textColor="#9CA3AF"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="@dimen/nav_drawer_chevron_text"
+                    android:textColor="#D1D5DB"/>
+
+            </LinearLayout>
+
+            <!-- Set Expense Limit -->
+            <LinearLayout
+                android:id="@+id/navItemExpenseLimit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_drawer_item_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/bg_nav_menu_hover"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="@dimen/nav_drawer_icon_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="🔔"
+                    android:textSize="@dimen/nav_drawer_emoji_text"
+                    android:layout_marginEnd="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Set Expense Limit"
+                        android:textSize="@dimen/nav_drawer_title_text"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A2E"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daily, weekly &amp; monthly alerts"
+                        android:textSize="@dimen/nav_drawer_subtitle_text"
+                        android:textColor="#9CA3AF"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="@dimen/nav_drawer_chevron_text"
+                    android:textColor="#D1D5DB"/>
+
+            </LinearLayout>
+
+            <!-- Divider + Account section -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F3F4F6"
+                android:layout_marginVertical="6dp"
+                android:layout_marginHorizontal="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACCOUNT"
+                android:textSize="9.5sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.16"
+                android:textColor="#BBBBBB"
+                android:paddingHorizontal="8dp"
+                android:paddingBottom="4dp"/>
+
+            <!-- Edit Profile -->
+            <LinearLayout
+                android:id="@+id/navItemProfile"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_drawer_item_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/bg_nav_menu_hover"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="@dimen/nav_drawer_icon_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="👤"
+                    android:textSize="@dimen/nav_drawer_emoji_text"
+                    android:layout_marginEnd="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit Profile"
+                        android:textSize="@dimen/nav_drawer_title_text"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A2E"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Update your personal details"
+                        android:textSize="@dimen/nav_drawer_subtitle_text"
+                        android:textColor="#9CA3AF"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="@dimen/nav_drawer_chevron_text"
+                    android:textColor="#D1D5DB"/>
+
+            </LinearLayout>
+
+            <!-- Logout -->
+            <LinearLayout
+                android:id="@+id/navItemLogout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_drawer_item_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/bg_nav_menu_hover"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="@dimen/nav_drawer_icon_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="🚪"
+                    android:textSize="@dimen/nav_drawer_emoji_text"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Logout"
+                    android:textSize="@dimen/nav_drawer_title_text"
+                    android:textStyle="bold"
+                    android:textColor="#EF4444"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- ══════════════════════════════════════════════════════════
+         FOOTER – pinned to bottom
+         ══════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F3F4F6"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ArthSetu AI  •  v1.0"
+            android:textSize="@dimen/nav_drawer_subtitle_text"
+            android:textColor="#BBBBBB"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

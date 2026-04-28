@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">TeamArthSetu</string>
+    <string name="login_captcha_hint">Enter the code</string>
+    <string name="login_captcha_refresh">Refresh code</string>
+    <string name="login_captcha_mismatch">Code does not match. Try again or refresh.</string>
+    <string name="otp_resend_timer">Resend OTP in %1$d:%2$02d</string>
+    <string name="otp_resend_ready">You can resend OTP now</string>
+    <string name="ai_insights_loading">Loading insights…</string>
+    <string name="ai_insights_empty">No insights yet. Transactions will generate AI insights after sync.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bank_stmt_category_label">Category: %1$s</string>
+    <string name="bank_stmt_debited">Debited (−)</string>
+    <string name="bank_stmt_credited">Credited (+)</string>
+    <string name="bank_progress_copying">Copying PDF…</string>
+    <string name="bank_progress_extracting">Reading text from PDF…</string>
+    <string name="bank_progress_ocr">Scanning page %1$d of %2$d (OCR)…</string>
+    <string name="bank_progress_parsing">Finding transactions in text…</string>
+    <string name="bank_progress_categorize">Categorising %1$d of %2$d…</string>
+    <string name="bank_progress_sms">Loading your expenses for SMS matching…</string>
+    <string name="bank_progress_matching">Matching SMS and statement lines…</string>
+    <string name="bank_sms_row_badge_not_on_pdf">SMS expense — not on this PDF</string>
+    <string name="bank_sms_row_badge_not_in_expenses">SMS on phone — not in expenses yet</string>
+    <string name="bank_sms_row_hint_firestore_unmatched">This debit is already saved from bank SMS but no line on the imported PDF matched it (reference, date, amount).</string>
+    <string name="bank_sms_row_hint_inbox_pending">Parsed from your SMS inbox. Tap the card to set category, then add to expenses.</string>
+    <string name="bank_sms_add_to_expenses">Add to expenses</string>
+    <string name="bank_sms_uncategorized">Uncategorized</string>
+    <string name="bank_sms_edit_category_title">Edit category</string>
+    <string name="bank_sms_inbox_category_title">Category for this SMS</string>
+    <string name="bank_sms_add_category_title">Add to expenses</string>
+    <string name="bank_pdf_add_to_expenses">Add to expenses</string>
+    <string name="bank_pdf_added_to_expenses">Added to expenses</string>
+    <string name="bank_pdf_matched_sms">Matched bank SMS</string>
+    <string name="bank_pdf_in_expenses_sms_ref">Already in expenses (same ref as bank SMS)</string>
+</resources>
