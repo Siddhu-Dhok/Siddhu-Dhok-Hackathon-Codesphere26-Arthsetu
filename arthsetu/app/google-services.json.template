@@ -1,0 +1,22 @@
+# Google Services Configuration Template
+
+This file is intentionally not included in the repository for security reasons.
+
+## Setup Instructions
+
+1. **Get your google-services.json**
+   - Go to [Firebase Console](https://console.firebase.google.com/)
+   - Select your project
+   - Go to Project Settings
+   - Download the `google-services.json` file
+
+2. **Place the file**
+   - Copy `google-services.json` to `app/` directory
+
+3. **Build and Run**
+   - The app will now have Firebase connectivity
+
+## Security Note
+
+Never commit `google-services.json` to version control!
+This file contains sensitive API keys and should be added to `.gitignore`.
